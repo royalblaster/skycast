@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import QueryProvider from "@/context/QueryProvider";
 import { ThemeProvider } from "@/context/ThemeProvider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "SkyCast",
@@ -23,7 +25,13 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <div className="bg-gradient-to-br from-background to-muted">
+              <Header />
+              <main className="min-h-screen container mx-auto px-2 py-8">
+                {children}
+              </main>
+              <Footer />
+            </div>
           </ThemeProvider>
         </QueryProvider>
       </body>
