@@ -19,7 +19,6 @@ export default function Page(props: {
 }) {
   const params = use(props.params);
   const searchParams = use(props.searchParams);
-  const cityName = params.cityName;
   const lat = parseFloat(
     typeof searchParams.lat === "string" ? searchParams.lat : "0"
   );
