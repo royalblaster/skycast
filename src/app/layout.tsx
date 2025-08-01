@@ -4,6 +4,7 @@ import QueryProvider from "@/context/QueryProvider";
 import { ThemeProvider } from "@/context/ThemeProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "SkyCast",
@@ -32,6 +33,7 @@ export default function RootLayout({
               </main>
               <Footer />
             </div>
+            <Toaster richColors />
           </ThemeProvider>
         </QueryProvider>
       </body>
