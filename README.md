@@ -41,7 +41,7 @@ Key highlights include:
 
 ## Access the App
 
-[https://skycast-fawn.vercel.app/](https://skycast-fawn.vercel.app/)
+[skycast-gamma-woad.vercel.app](https://skycast-gamma-woad.vercel.app/)
 
 ## ⚙️ Getting Started in Development Mode
 
