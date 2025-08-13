@@ -11,13 +11,21 @@ import {
 } from "recharts";
 import { format } from "date-fns";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 type HourlyTemperatureProps = {
   data: ForecastData;
 };
 
 const HourlyTemperature = ({ data }: HourlyTemperatureProps) => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // or a loader
   const chartData = data.list.slice(0, 8).map((item) => ({
     time: format(new Date(item.dt * 1000), "ha"), // time of data forecasted, unix, UTC  |  https://date-fns.org/v4.1.0/docs/format
     temp: Math.round(item.main.temp),
@@ -35,13 +43,13 @@ const HourlyTemperature = ({ data }: HourlyTemperatureProps) => {
             <LineChart data={chartData}>
               <XAxis
                 dataKey="time"
-                stroke={theme === "dark" ? "#ffffff" : "#000000"} //"#ffffff"
+                stroke={resolvedTheme === "dark" ? "#ffffff" : "#000000"} //"#ffffff"
                 fontSize={12}
                 tickLine={false}
                 axisLine={true}
               />
               <YAxis
-                stroke={theme === "dark" ? "#ffffff" : "#000000"}
+                stroke={resolvedTheme === "dark" ? "#ffffff" : "#000000"}
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}

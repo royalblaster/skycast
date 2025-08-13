@@ -4,10 +4,20 @@ import Link from "next/link";
 import { Moon, Sun } from "lucide-react";
 import CitySearch from "./CitySearch";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const Header = () => {
-  const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // or a loader
+
+  const isDark = resolvedTheme === "dark";
+
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex justify-between h-24 px-4 items-center">
