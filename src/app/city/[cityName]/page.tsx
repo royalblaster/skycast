@@ -18,6 +18,7 @@ export default function Page(props: {
   searchParams: SearchParams;
 }) {
   const params = use(props.params);
+  params.cityName = decodeURIComponent(params.cityName);
   const searchParams = use(props.searchParams);
   const lat = parseFloat(
     typeof searchParams.lat === "string" ? searchParams.lat : "0"
@@ -44,7 +45,6 @@ export default function Page(props: {
   if (!weatherQuery.data || !forecastQuery.data || !params.cityName) {
     return <LoadingSkeleton />;
   }
-
   return (
     <div className="space-y-4">
       {/* Favorite Cities */}
