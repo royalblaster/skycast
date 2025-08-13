@@ -7,6 +7,7 @@ import Image from "next/image";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex justify-between h-24 px-4 items-center">
@@ -20,25 +21,22 @@ const Header = () => {
             className="object-contain"
           />
         </Link>
-        <div>
-          <div className="flex gap-4">
-            {/* Search cities Button */}
-            <CitySearch />
+        <div className="flex items-center gap-4">
+          {/* Search */}
+          <CitySearch />
 
-            {/* Toggle Theme Button */}
-            <div
-              className="flex items-center cursor-pointer"
-              onClick={() =>
-                theme === "dark" ? setTheme("light") : setTheme("dark")
-              }
-            >
-              {theme === "dark" ? (
-                <Sun className="h-6 w-6 text-yellow-500" />
-              ) : (
-                <Moon className="h-6 w-6 text-blue-500" />
-              )}
-            </div>
-          </div>
+          {/* Theme toggle */}
+          <button
+            aria-label="Toggle theme"
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+            className="flex items-center"
+          >
+            {isDark ? (
+              <Sun className="h-6 w-6 text-yellow-500" />
+            ) : (
+              <Moon className="h-6 w-6 text-blue-500" />
+            )}
+          </button>
         </div>
       </div>
     </header>
